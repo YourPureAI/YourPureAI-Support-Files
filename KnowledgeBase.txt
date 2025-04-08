@@ -1,0 +1,320 @@
+Application Overview
+Understanding the AI Agent Platform
+
+What is this application?
+This platform allows you to create, configure, and interact with AI assistants and agents. It leverages OpenAI's powerful API to create intelligent conversational agents that can perform various tasks, process information, and provide responses based on your configuration.
+
+Key Features
+Create and manage multiple AI assistants with different capabilities
+Configure advanced workflows with action sequences
+Support for webhooks, API calls, and process actions
+Text-to-speech capabilities for voice interaction
+Persistent memory for maintaining context in conversations
+Global variables for dynamic content across all agents
+Voice recognition for hands-free interaction
+Application Structure
+The application is organized into several key areas:
+
+Dashboard: The main page where you can see all your AI agents
+Chat Windows: Where you interact with each AI agent
+Window Settings: Configure specific settings for each agent
+Global Settings: Application-wide configuration options
+Getting Started
+To get started with the application:
+
+Configure your global settings with your OpenAI API key
+Create your first AI assistant/agent
+Configure the agent's settings including any actions you want it to perform
+Start chatting with your agent in the chat window
+
+================================
+
+Creating and Managing Agents
+Step-by-step guide to create and configure AI agents
+
+Creating a New Agent
+Navigate to the dashboard by clicking on the Dashboard link in the sidebar.
+Click the "New Agent" button located at the top of the dashboard or in the empty state if you have no agents yet.
+Enter a name for your agent in the dialog that appears. Choose a descriptive name that reflects the agent's purpose.
+Click "Create" to generate your new agent. This will create a new chat window with default settings.
+Agent Requirements
+To create a functional agent, you'll need:
+
+OpenAI API Key: You can use your global default key or set a specific key for each agent.
+OpenAI Assistant ID: You'll need to create an assistant in the OpenAI platform and use its ID.
+You can create OpenAI assistants at platform.openai.com/assistants
+Optional Thread ID: For maintaining conversation history with the OpenAI API.
+Managing Existing Agents
+From the dashboard, you can:
+
+Open an agent by clicking on its card to start chatting.
+Access agent settings by clicking the settings button within the chat window.
+Delete an agent by using the delete option in the agent's context menu on the dashboard.
+Copy/duplicate an agent to create a new one with the same settings.
+Best Practices
+Create specialized agents for specific tasks rather than one general-purpose agent.
+Use clear naming conventions to easily identify your agents.
+Test your agent configurations thoroughly before deploying for real use.
+Regularly update your agent configurations as you refine their functionality.
+
+================================
+
+Chat Window Settings
+How to configure your AI agent's chat window
+
+Accessing Window Settings
+To access the settings for a chat window:
+
+Open the chat window for your agent
+Click on the "Settings" tab at the top of the window
+Basic Configuration
+Window Name
+The display name for your agent. Choose something descriptive and recognizable.
+
+OpenAI API Key
+Your API key for OpenAI services. This can be left empty to use the default key from global settings. You can find your API key in the OpenAI dashboard.
+
+OpenAI Assistant ID
+The ID of the OpenAI assistant to use. Create assistants in theOpenAI Assistants section. The ID starts with "asst_".
+
+Thread ID
+Optional: The ID of an existing OpenAI thread to continue a conversation. Leave empty to create a new thread automatically.
+
+Advanced Features
+JSON Response Format
+Define a JSON structure for the AI to return structured data. This is crucial for action configuration. Example format:
+
+{
+  "action": "action_name",
+  "data": {
+    "key1": "value1",
+    "key2": "value2" 
+  }
+}
+Enable Text-to-Speech
+Toggle to enable or disable voice responses from your AI agent. Voice settings can be configured in the global settings.
+
+Enable Persistent Memory
+Toggle to enable or disable persistent context memory for your agent. This allows the agent to remember information across sessions.
+
+Persistent Memory Content
+Text that will be included in every conversation with the agent. Useful for providing consistent context or instructions.
+
+Using The Chat Window
+After configuring your chat window settings:
+
+Switch to the "Chat" tab to start interacting with your agent
+Type messages in the input field at the bottom
+Use the microphone button for voice input if configured
+View your conversation history in the message area
+Use the clear button to start a fresh conversation
+Important: You must click the "Save Settings" button after making changes to window settings. Changes are not saved automatically and will be lost if you navigate away without saving.
+
+================================
+
+Actions Configuration
+Setting up automated actions for your agents
+
+What Are Actions?
+Actions allow your AI agent to perform specific tasks based on the content of its responses. When the AI's response matches certain criteria, the system can automatically:
+
+Make webhook calls to external services
+Call additional OpenAI assistants
+Execute internal processes
+Make API calls to interact with external systems
+Adding a New Action
+Go to the chat window settings for your agent
+Scroll to the Actions section and click "Add Action"
+Configure the action trigger by specifying:
+Parameter Name: The JSON field to match (e.g., "action")
+Parameter Value: The value to look for (e.g., "search_products")
+Select an action type (webhook, process, openai, api, display)
+Configure the action details based on the selected type
+Save the action to add it to your agent's workflow
+Types of Actions
+Webhook Actions
+Send data to external web services via HTTP requests.
+
+Configuration Options:
+Webhook URL: The endpoint to send data to
+JSON Format: Structure of the data to send
+OpenAI Actions
+Pass data to another OpenAI assistant for processing.
+
+Configuration Options:
+Assistant ID: ID of the OpenAI assistant to call
+Thread ID: Optional thread for conversation continuity
+JSON Format: Structure for formatting the assistant's response
+Process Actions
+Execute internal system processes like updating memory.
+
+Configuration Options:
+Process Type: Choose update_persistent_memory or execute_command
+Memory Parameter: For memory updates, specify the parameter to use
+API Actions
+Make HTTP requests to external APIs with full control over method and format.
+
+Configuration Options:
+API URL: The endpoint to call
+Method: HTTP method (GET, POST, PUT, DELETE, PATCH)
+Content Type: Format of the request data
+JSON Format: Structure of the data to send
+Display Actions
+Display information directly in the chat interface.
+
+Action Execution Flow
+When your agent generates a response:
+
+The system checks if the response contains JSON that matches any action triggers
+If a match is found, the corresponding action is executed
+Actions are processed in the order they are listed in your configuration
+Results from actions can be displayed in the chat or used for further processing
+Pro Tip: To debug your actions, use a simple JSON format in your assistant's instructions and include detailed error handling in your configurations.
+
+
+================================
+
+
+Global Settings
+Application-wide configuration options
+
+Accessing Global Settings
+To access the global settings:
+
+Click on the "Settings" link in the sidebar navigation
+Navigate between different settings categories using the tabs
+OpenAI Settings
+Default API Key
+Your default OpenAI API key. This will be used for all agents unless overridden in their individual settings. You can find your API key in theOpenAI dashboard.
+
+Default Assistant ID
+A default OpenAI assistant ID to use when creating new agents. You can create assistants in theOpenAI Assistants section.
+
+Webhook Settings
+Default Webhook URL
+A default URL to use for webhook actions. This simplifies configuration when multiple agents need to call the same service.
+
+Voice Settings
+Configure text-to-speech and speech recognition options. See the Voice Settings tab for detailed information.
+
+Global Variables
+Define variables that can be used across all agents. See the Global Variables tab for detailed information.
+
+User Profile
+Manage your user profile and account settings. See the User Profile tab for detailed information.
+
+Note: Global settings apply to all agents and chat windows unless overridden by specific settings in those windows.
+
+
+================================
+
+
+Voice Settings
+Configure text-to-speech and speech recognition
+
+Text-to-Speech Configuration
+Language
+The language to use for text-to-speech output. Select from the dropdown list of supported languages.
+
+Voice
+The voice to use for speech output. Options vary based on the selected language and your browser's capabilities.
+
+Rate
+The speed at which the voice speaks. 1.0 is the normal speed, lower values slow down the speech, and higher values speed it up.
+
+Volume
+The volume level for speech output. 1.0 is the maximum volume.
+
+Speech Recognition Configuration
+Recognition Language
+The language to use for recognizing speech input. Select from the dropdown list of supported languages. Note that browser support varies, and some languages may have limited recognition capabilities.
+
+Languages at the top of the list are fully supported by your browser, while those at the bottom may have limited or no support depending on your browser and system.
+
+How to Use Voice Features
+Text-to-Speech
+Enable the "Text-to-Speech" option in the chat window settings for each agent
+Configure your preferred voice settings here in the global settings
+The agent's responses will be spoken aloud when received
+Speech Recognition
+Click the microphone button in the chat input area
+Grant microphone access permission if prompted
+Speak clearly, and your speech will be converted to text
+The recognized text will appear in the input field
+Click send or press Enter to send the message
+Note: Voice features require browser support and appropriate permissions. Performance may vary across different browsers and devices. For best results, use the latest version of Chrome.
+
+
+
+================================
+
+
+
+Global Variables
+Create and manage variables for use across all agents
+
+What Are Global Variables?
+Global variables allow you to define values that can be dynamically inserted into JSON formats and other configurations throughout the application. They're useful for:
+
+Storing information that's used across multiple agents
+Creating dynamic content that can be updated in one place
+Personalizing responses with user or system information
+Creating Variables
+Go to Global Settings and select the "Variables" tab
+Enter a name for your variable (e.g., "user_name", "company", "current_date")
+Enter a value for the variable
+Click "Add Variable" to create it
+Using Variables
+To use a variable in any JSON format or text field:
+
+Insert the variable name surrounded by double curly braces: {{variable_name}}
+Example:
+If you have a variable named "user_name" with value "John", this JSON:
+
+{
+  "message": "Hello {{user_name}}, how can I help you today?"
+}
+Will be processed as:
+
+{
+  "message": "Hello John, how can I help you today?"
+}
+Managing Variables
+For existing variables, you can:
+
+Edit the value by clicking the edit button next to the variable
+Delete a variable by clicking the delete button
+Common Use Cases
+Personalization
+Variables like "user_name", "company_name", or "location" can personalize responses.
+
+Dynamic Content
+Variables like "current_promotion" or "product_version" can be updated once but reflected everywhere.
+
+API Configuration
+Variables like "api_endpoint" or "webhook_path" can simplify configuration management.
+
+Pro Tip: Variables are especially useful in JSON formats for actions, allowing you to dynamically insert information into webhooks, API calls, and other integrations without modifying each agent individually.
+
+
+================================
+
+
+User Profile
+Manage your account settings
+
+Profile Information
+Name
+Your display name in the application. This can be updated at any time.
+
+Email
+The email address associated with your account. This is read-only.
+
+Password Management
+To change your password:
+
+Enter your current password for verification
+Enter your new password
+Confirm your new password by entering it again
+Click "Change Password" to update
+Security Tip: Use a strong, unique password for your account. A strong password includes a mix of uppercase and lowercase letters, numbers, and special characters.
